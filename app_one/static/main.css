@@ -1,0 +1,22 @@
+
+
+.container{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.form{
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+}
+
+.dojo_form{
+
+}
+
+.line{
+    border-bottom: 2px solid black;
+    display: block;
+    width: 250px;
+}

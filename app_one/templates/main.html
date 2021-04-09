@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <div class="dojo_form">
+                <form action="/add_dojo" method="POST" class="add_dojo">
+                    {% csrf_token %}
+                    <h1>Add a Dojo</h1>
+                    <p>Name</p>
+                    <input type="text" name="name">
+                    <p>City</p>
+                    <input type="text" name="city">
+                    <p>State</p>
+                    <input type="text" name="state">
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+            <div class="ninja_form">
+                <form action="/add_ninja" method="POST" class="add_ninja">
+                    {% csrf_token %}
+                    <h1>Add a Ninja</h1>
+                    <p>First Name</p>
+                    <input type="text" name="first_name">
+                    <p>Last Name</p>
+                    <input type="text" name="last_name">
+                    <p>Dojo</p>
+                    <select id="dojo" name="dojo">
+                        {% for dojo in all_dojo %}
+                        <option value="{{dojo.id}}">{{dojo.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+        <span class="line"></span>
+        <h1>All the Dojos</h1>
+        <ul>
+            {% for dojo in all_dojo %}
+            <h4>Ninjas at the {{dojo.name}}
+                <ul>
+                    {% for ninjas in dojo.ninjas.all %}
+                    <li>{{ninjas.first_name}} {{ninjas.last_name}}</li>
+                    {% endfor %}
+                </ul>
+            </h4>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+</body>
+
+</html>
